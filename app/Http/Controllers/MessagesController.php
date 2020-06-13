@@ -79,7 +79,7 @@ class MessagesController extends Controller
      */
     public function edit($id)
     {
-         $message = Message::findOrFail($id);
+         $message = Message::find($id);
 
         return view('messages.edit', [
             'message' => $message,
@@ -95,7 +95,7 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $message = Message::findOrFail($id);
+         $message = Message::find($id);
         $message->content = $request->content;
         $message->save();
 
