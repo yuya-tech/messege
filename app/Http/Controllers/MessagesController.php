@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Message;
+
 class MessagesController extends Controller
 {
     /**
@@ -13,7 +15,11 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        //
+    $messages = Message::all();
+
+        return view('messages.index', [
+            'messages' => $messages,
+        ]);
     }
 
     /**
@@ -38,6 +44,11 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $this->validate($request, [
+            'content' => 'required|max:191',
+        ]);
+        
         $message = new Message;
         $message->content = $request->content;
         $message->save();
@@ -68,7 +79,7 @@ class MessagesController extends Controller
      */
     public function edit($id)
     {
-         $message = Message::find($id);
+         $message = Message::findOrFail($id);
 
         return view('messages.edit', [
             'message' => $message,
@@ -84,7 +95,7 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $message = Message::find($id);
+         $message = Message::findOrFail($id);
         $message->content = $request->content;
         $message->save();
 
