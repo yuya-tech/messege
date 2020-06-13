@@ -9,6 +9,8 @@ h1>id = {{ $message->id }} のメッセージ詳細ページ</h1>
             <th>id</th>
             <td>{{ $message->id }}</td>
         </tr>
+        <th>タイトル</th>
+            <td>{{ $message->title }}</td>
         <tr>
             <th>メッセージ</th>
             <td>{{ $message->content }}</td>
