@@ -15,7 +15,7 @@ class MessagesController extends Controller
      */
     public function index()
     {
-    $messages = Message::all();
+    $messages = Message::orderBy('id', 'desc')->paginate(25);
 
         return view('messages.index', [
             'messages' => $messages,
@@ -97,6 +97,7 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $this->validate($request, [
             'title' => 'required|max:191',   // 追加
             'content' => 'required|max:191',
