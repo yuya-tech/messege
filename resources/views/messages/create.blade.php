@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-6">
             {!! Form::model($message, ['route' => 'messages.store']) !!}
-            
+            //testすると
                 <div class="form-group">
                     {!! Form::label('title', 'タイトル:') !!}
                     {!! Form::text('title', null, ['class' => 'form-control']) !!}
